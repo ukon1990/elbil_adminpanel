@@ -8,11 +8,14 @@ import {CarService} from './car.service';
   moduleId: module.id,
   selector: 'car',
   templateUrl: 'car.component.html',
+  styleUrls: ['car.component.css'],
   directives: [NgClass],
   providers: [CarService]
 })
 export class CarComponent {
   title = 'Bilpanel';
+  selectedCar = {'conns': []};
+  selectedCarIndex: number;
   cars = [
     { "model":"Nissan Leaf", "conns":["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
     { "model":"BMW i3", "conns": ["14", "50", "32", "60", "42", "52", "39", "41"] },
@@ -73,5 +76,23 @@ export class CarComponent {
         error => console.log(error)
       );
     this.router.navigate(['/about']);*/
+  }
+
+  save(): void{
+    console.log('saved changes');
+  }
+  //Function for removing connectors from a car model
+  removeConnector(conn: number): void{
+    this.selectedCar.conns.splice(conn, 1);
+    this.cars[this.selectedCarIndex].conns.splice(conn, 1);
+  }
+  //Selecting a car from the list
+  selectCar(car, index: number): void{
+    this.selectedCar = car;
+    this.selectedCarIndex = index;
+  }
+  //Get the number of connectors
+  getNumOfConns(): number{
+    return this.selectedCar.conns.length;
   }
 }

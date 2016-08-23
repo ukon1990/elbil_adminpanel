@@ -1,16 +1,15 @@
 <h2>{{title}}</h2>
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Brukernavn</th>
-    <th>Handling</th>
-  </tr>
-  <tr *ngFor="let car of cars">
-    <td>{{car.model}}</td>
-    <td>{{car.conns | json}}</td>
-    <td>
-      <button>Slett</button>
-      <button>Nytt passord</button>
-    </td>
-  </tr>
-</table>
+<div>
+  <div id="left-panel">
+    <input type="text" placeholder="Søk etter modell">
+    <ul>
+      <li [ngClass]="{selected: selectedCar.model === car.model}" (click)="selectCar(car, i)" *ngFor="let car of cars, let i = index">{{car.model}}</li>
+    </ul>
+  </div>
+  <div id="right-panel" >
+    <p >Det er {{getNumOfConns()}} kontakter koblet opp mot denne bilen.</p>
+    <ul>
+      <li *ngFor="let c of selectedCar.conns, let i = index">{{connTypes[c]}} <button class="delete-btn" (click)="removeConnector(i)">Fjern</button></li>
+    </ul>
+  </div>
+</div>

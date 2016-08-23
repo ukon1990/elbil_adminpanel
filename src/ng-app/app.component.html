@@ -2,12 +2,12 @@
   <div id="title">
     <h1>{{title}}</h1>
   </div>
-  <button id="menu" [ngClass]="{toggle: isMenuToggeled}" (click)="menuToggle()">Menu</button>
-  <nav [ngClass]="{show: isMenuToggeled}">
+  <nav>
+    <button (click)="previousPage()">Tilbake</button>
     <ul>
-      <li><a (click)="menuToggle()" routerLink="/" routerLinkActive="selected">Login</a></li>
-      <li><a (click)="menuToggle()" routerLink="/user" routerLinkActive="selected">Users</a></li>
-      <li><a (click)="menuToggle()" routerLink="/car" routerLinkActive="selected">Cars</a></li>
+      <li><a routerLink="/" routerLinkActive="selected">Login</a></li>
+      <li><a routerLink="/user" routerLinkActive="selected">Users</a></li>
+      <li><a routerLink="/car" routerLinkActive="selected">Cars</a></li>
     </ul>
   </nav>
 </header>
