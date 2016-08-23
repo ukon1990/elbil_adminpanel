@@ -1,9 +1,10 @@
 <h2>{{title}}</h2>
 <div>
   <div id="left-panel">
-    <input type="text" placeholder="Søk etter modell">
+    <input type="text" placeholder="Søk etter modell" [(ngModel)]="carName">
     <ul>
-      <li [ngClass]="{selected: selectedCar.model === car.model}" (click)="selectCar(car, i)" *ngFor="let car of cars, let i = index">{{car.model}}</li>
+      <li [ngClass]="{selected: selectedCar.model === car.model, hide: contains(car.model, carName)}" (click)="selectCar(car, i)" *ngFor="let car of cars, let i = index">
+        {{car.model}}</li>
     </ul>
   </div>
   <div id="right-panel" >

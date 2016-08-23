@@ -14,6 +14,7 @@ import {CarService} from './car.service';
 })
 export class CarComponent {
   title = 'Bilpanel';
+  carName: string = '';
   selectedCar = {'conns': []};
   selectedCarIndex: number;
   cars = [
@@ -78,6 +79,14 @@ export class CarComponent {
     this.router.navigate(['/about']);*/
   }
 
+  contains(text: string): boolean{
+    console.log(text + ' vs ' + this.carName);
+    if(text.indexOf(this.carName) > -1 || this.carName.length === 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
   save(): void{
     console.log('saved changes');
   }

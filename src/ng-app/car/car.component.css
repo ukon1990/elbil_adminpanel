@@ -45,3 +45,6 @@ li.selected, li:hover{
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.21);
   transition: box-shadow 1s, background 1s;
 }
+.hide{
+  display: none;
+}
