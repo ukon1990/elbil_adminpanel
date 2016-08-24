@@ -85,7 +85,6 @@ export class CarComponent {
   }
   //Checks if a car matches the search string
   contains(text: string): boolean{
-    console.log(text + ' vs ' + this.carName);
     if(text.toLowerCase().indexOf(this.carName.toLowerCase()) > -1 || this.carName.length === 0){
       return true;
     }else{
