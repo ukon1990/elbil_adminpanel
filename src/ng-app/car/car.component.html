@@ -3,7 +3,7 @@
   <div id="left-panel">
     <input type="text" placeholder="Søk etter modell" [(ngModel)]="carName">
     <ul>
-      <li [ngClass]="{selected: selectedCar.model === car.model, hide: contains(car.model, carName)}" (click)="selectCar(car, i)" *ngFor="let car of cars, let i = index">
+      <li [ngClass]="{selected: selectedCar.model === car.model, hide: !contains(car.model, carName)}" (click)="selectCar(car, i)" *ngFor="let car of cars, let i = index">
         {{car.model}}</li>
     </ul>
   </div>
