@@ -81,7 +81,7 @@ export class CarComponent {
 
   contains(text: string): boolean{
     console.log(text + ' vs ' + this.carName);
-    if(text.indexOf(this.carName) > -1 || this.carName.length === 0){
+    if(text.toLowerCase().indexOf(this.carName.toLowerCase()) > -1 || this.carName.length === 0){
       return true;
     }else{
       return false;
