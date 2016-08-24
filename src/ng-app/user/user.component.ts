@@ -22,8 +22,8 @@ import {UserService} from './user.service';
 export class UserComponent {
   title = 'Brukerpanel';
   users = [
-    {'user_id': '13fda124asd', 'username': 'jonas'},
-    {'user_id': '13fda124sdd', 'username': 'hansob'}
+    {'user_id': '13fda124asd', 'username': 'jonas', 'mail': 'mail@jonaskf.net'},
+    {'user_id': '13fda124sdd', 'username': 'hansob', 'mail': 'mail@mail.mail'}
   ];
 
 

@@ -14,9 +14,15 @@ import {CarService} from './car.service';
 })
 export class CarComponent {
   title = 'Bilpanel';
+  //Selection
   carName: string = '';
   selectedCar = {'conns': []};
   selectedCarIndex: number;
+  selectedConn: string = '';
+  //For the dialog window
+  carDialogName: string = '';
+  carDialog: boolean = false;
+  //Lists
   cars = [
     { "model":"Nissan Leaf", "conns":["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
     { "model":"BMW i3", "conns": ["14", "50", "32", "60", "42", "52", "39", "41"] },
@@ -62,7 +68,6 @@ export class CarComponent {
     '52' : 'Type 2 + Danish (Section 107-2-D1)'
   };
 
-
   constructor(private router: Router, private carService: CarService){}
 
   ngOnInit(): void{
@@ -78,7 +83,7 @@ export class CarComponent {
       );
     this.router.navigate(['/about']);*/
   }
-
+  //Checks if a car matches the search string
   contains(text: string): boolean{
     console.log(text + ' vs ' + this.carName);
     if(text.toLowerCase().indexOf(this.carName.toLowerCase()) > -1 || this.carName.length === 0){
@@ -93,7 +98,10 @@ export class CarComponent {
   //Function for removing connectors from a car model
   removeConnector(conn: number): void{
     this.selectedCar.conns.splice(conn, 1);
-    this.cars[this.selectedCarIndex].conns.splice(conn, 1);
+    this.cars[this.selectedCarIndex].conns.splice(conn, 0);
+  }
+  addConnector(conn: string): void{
+    this.selectedCar.conns.push(conn);
   }
   //Selecting a car from the list
   selectCar(car, index: number): void{
@@ -103,5 +111,19 @@ export class CarComponent {
   //Get the number of connectors
   getNumOfConns(): number{
     return this.selectedCar.conns.length;
+  }
+  openDialog(){
+    this.carDialog = !this.carDialog;
+  }
+  addCar(): void{
+    this.openDialog();
+    this.cars.push({'model': this.carDialogName, 'conns': []});
+  }
+  getConnKeys(){
+    let list = [];
+    for (let x in this.connTypes) {
+     list.push(x);
+    }
+    return list;
   }
 }

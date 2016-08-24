@@ -1,7 +1,15 @@
 <h2>{{title}}</h2>
+<!-- Dialog box for input of car -->
+<div id="dialog-car" [ngClass]="{hide: !carDialog}">
+  <div id="dialog-top"> <button (click)="openDialog()">Lukk</button></div>
+  <label for="car">Bil modell</label>
+  <input type="text" placeholder="Il Tempo Gigante" [(ngModel)]="carDialogName"/>
+  <button (click)="addCar()">Legg til</button>
+</div>
 <div>
   <div id="left-panel">
     <input type="text" placeholder="Søk etter modell" [(ngModel)]="carName">
+    <button (click)="openDialog()">Ny bil</button>
     <ul>
       <li [ngClass]="{selected: selectedCar.model === car.model, hide: !contains(car.model, carName)}" (click)="selectCar(car, i)" *ngFor="let car of cars, let i = index">
         {{car.model}}</li>
@@ -9,6 +17,13 @@
   </div>
   <div id="right-panel" >
     <p >Det er {{getNumOfConns()}} kontakter koblet opp mot denne bilen.</p>
+    <label for="conn-list">Velg kontakt </label>
+    <select name="conn-list" [(ngModel)]="selectedConn">
+      <option *ngFor="let c of getConnKeys()" [value]="c">
+        {{connTypes[c]}}
+      </option>
+    </select>
+    <button (click)="addConnector(selectedConn)">Legg til</button>
     <ul>
       <li *ngFor="let c of selectedCar.conns, let i = index">{{connTypes[c]}} <button class="delete-btn" (click)="removeConnector(i)">Fjern</button></li>
     </ul>
