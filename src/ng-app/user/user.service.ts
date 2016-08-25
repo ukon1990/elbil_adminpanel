@@ -8,7 +8,7 @@ export class UserService{
   constructor(private http: Http){}
 
   getUsers(){
-      //return this.http.get('app/data/cv.json')
-      //.map(response => <User>function(r){ return r;  }(response.json()));
+      return this.http.get('http://localhost/elCharge_web/api/GetUsers.php')
+      .map(response => <User>function(r){ console.log(r); return r;  }(response.json()));
   }
 }

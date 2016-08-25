@@ -8,38 +8,33 @@ import {UserService} from './user.service';
   moduleId: module.id,
   selector: 'user',
   templateUrl: 'user.component.html',
-  styles: [`
-    table{
-      background: green;
-    }
-    table td, table th{
-      padding: 0.5em;
-    }
-  `],
+  styleUrls: ['user.component.css'],
   directives: [NgClass],
   providers: [UserService]
 })
 export class UserComponent {
   title = 'Brukerpanel';
-  users = [
-    {'user_id': '13fda124asd', 'username': 'jonas', 'mail': 'mail@jonaskf.net'},
-    {'user_id': '13fda124sdd', 'username': 'hansob', 'mail': 'mail@mail.mail'}
-  ];
-
+  users = {};
+  //For resetting the password
+  password: string;
+  passwordMatch : string;
 
   constructor(private router: Router, private userService: UserService){}
 
   ngOnInit(): void{
-
-    /*
-    this.users = this.userService.get()
+    this.users = this.userService.getUsers()
       .subscribe(
-        cv => {
-          this.cv = cv
-          this.skills = cv.skills
+        users => {
+          this.users = users
         },
         error => console.log(error)
       );
-    this.router.navigate(['/about']);*/
   }
+  newPassword(){
+    if(this.password === this.passwordMatch){
+      console.log('Success!');
+    }
+  }
+
+  //TODO: Only push changes for the users who there actually is a change for
 }
