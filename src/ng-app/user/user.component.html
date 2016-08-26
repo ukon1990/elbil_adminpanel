@@ -1,13 +1,11 @@
 <h2>{{title}}</h2>
 <table>
   <tr>
-    <th>ID</th>
     <th>Brukernavn</th>
     <th>Mail</th>
     <th>Handling</th>
   </tr>
   <tr *ngFor="let user of users.data">
-    <td>{{user.user_id}}</td>
     <td>{{user.username}}</td>
     <td><input type="email" value="{{user.mail}}"> </td>
     <td>
