@@ -13,7 +13,10 @@ import {LoginService} from './login.service';
 })
 export class LoginComponent {
   title = 'Logg inn';
-  users = {};
+  username: string = '';
+  password: string = '';
+  user = {};
+  creds = {};
 
 
   constructor(private router: Router, private loginService: LoginService){}
@@ -30,5 +33,15 @@ export class LoginComponent {
         error => console.log(error)
       );
     this.router.navigate(['/about']);*/
+  }
+  login(): void{
+    console.log('Logging inn? ' + this.username + ' ' + this.password);
+    this.user = this.loginService.login(this.username, this.password)
+      .subscribe(
+        result => {
+          this.creds = result
+        },
+        error => console.log(error)
+      );
   }
 }
