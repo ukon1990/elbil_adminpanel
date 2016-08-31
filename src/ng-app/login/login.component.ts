@@ -17,31 +17,29 @@ export class LoginComponent {
   password: string = '';
   user = {};
   creds = {};
+  loggedin: boolean = false;
 
 
   constructor(private router: Router, private loginService: LoginService){}
 
   ngOnInit(): void{
-
-    /*
-    this.users = this.userService.get()
-      .subscribe(
-        cv => {
-          this.cv = cv
-          this.skills = cv.skills
-        },
-        error => console.log(error)
-      );
-    this.router.navigate(['/about']);*/
+    //Moving the user to the root page, incase of invalid URLs
+    this.router.navigate(['/']);
   }
   login(): void{
-    console.log('Logging inn? ' + this.username + ' ' + this.password);
     this.user = this.loginService.login(this.username, this.password)
       .subscribe(
         result => {
-          this.creds = result
+          this.creds = this.validate(result)
         },
         error => console.log(error)
       );
+  }
+
+  validate(v){
+    if(v.loggedIn){
+        this.router.navigate(['/user']);
+    }
+    return v;
   }
 }

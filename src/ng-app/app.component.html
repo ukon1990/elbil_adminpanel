@@ -3,12 +3,12 @@
     <h1>{{title}}</h1>
   </div>
   <nav>
-    <button (click)="previousPage()">Tilbake</button>
+    <button (click)="previousPage()" *ngIf="location.path().length > 0">Tilbake</button>
     <ul>
-      <li><a routerLink="/" routerLinkActive="selected">Login</a></li>
-      <li><a routerLink="/user" routerLinkActive="selected">Users</a></li>
-      <li><a routerLink="/car" routerLinkActive="selected">Cars</a></li>
+      <li><a routerLink="/user" routerLinkActive="selected" *ngIf="location.path().length > 0">Users</a></li>
+      <li><a routerLink="/car" routerLinkActive="selected" *ngIf="location.path().length > 0">Cars</a></li>
     </ul>
+    <button (click)="logout()" *ngIf="location.path().length > 0">Logg ut</button>
   </nav>
 </header>
 <div id="content">
