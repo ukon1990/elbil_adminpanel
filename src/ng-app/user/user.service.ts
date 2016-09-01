@@ -11,4 +11,8 @@ export class UserService{
       return this.http.get('http://localhost:8888/elCharge_web/api/GetUsers.php')//https://elbil.hiof.no/api/GetUsers.php
       .map(response => <User>function(r){ console.log(r); return r;  }(response.json()));
   }
+  deleteUser(userId: string){
+      return this.http.get('http://localhost:8888/elCharge_web/api/DeleteUser.php?user_id=' + userId)//https://elbil.hiof.no/api/GetUsers.php
+      .map(response => <User>function(r){ console.log(r); return r;  }(response.json()));
+  }
 }

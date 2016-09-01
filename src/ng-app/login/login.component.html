@@ -1,6 +1,8 @@
 <h2>{{title}}</h2>
-<label for="username">Brukernavn </label>
-<input type="text" name="username" [(ngModel)]="username"/><br>
-<label for="password">Passord </label>
-<input type="password" name="password" [(ngModel)]="password"/><br>
-<button (click)="login()">Logg inn</button>
+<form >
+  <label for="username">Brukernavn </label>
+  <input type="text" name="username" [(ngModel)]="username" required/><br>
+  <label for="password">Passord </label>
+  <input type="password" name="password" [(ngModel)]="password" required/><br>
+  <input type="submit" (click)="login()" value="Logg inn"/>
+</form>

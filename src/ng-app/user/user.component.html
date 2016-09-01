@@ -9,7 +9,7 @@
     <td>{{user.username}}</td>
     <td><input type="email" value="{{user.mail}}"> </td>
     <td>
-      <button>Slett</button>
+      <button (click)="deleteUser(user.user_id)">Slett</button>
       <button>Nytt passord</button>
     </td>
   </tr>
