@@ -12,7 +12,7 @@ export class LoginService{
 
   login(username: string, password: string){
     return this.http.get(
-      'http://localhost:8888/elCharge_web/api/AdminLogin.php?username='
+      'http://localhost:8888/elCharge_web/api/admin/AdminLogin.php?username='
       + username + '&password=' + password
     ).map(response => <Login>function(r){
       //Checking if there is a valid

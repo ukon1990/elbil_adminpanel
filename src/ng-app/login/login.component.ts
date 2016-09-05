@@ -3,24 +3,28 @@ import {NgClass} from '@angular/common';
 import {Router} from '@angular/router';
 import {Login} from './login';
 import {LoginService} from './login.service';
+import {Global} from '../global';
 
 @Component({
   moduleId: module.id,
   selector: 'login',
   templateUrl: 'login.component.html',
   directives: [NgClass],
-  providers: [LoginService]
+  providers: [LoginService, Global]
 })
 export class LoginComponent {
-  title = 'Logg inn';
-  username: string = '';
-  password: string = '';
-  user = {};
-  creds = {};
-  loggedin: boolean = false;
+  private title = 'Logg inn';
+  private username: string = '';
+  private password: string = '';
+  private user = {};
+  private creds = {};
+  private loggedin: boolean = false;
 
 
-  constructor(private router: Router, private loginService: LoginService){}
+  constructor(
+    private router: Router, private loginService: LoginService,
+    private global: Global
+  ){}
 
   ngOnInit(): void{
     //Moving the user to the root page, incase of invalid URLs
@@ -31,6 +35,8 @@ export class LoginComponent {
       .subscribe(
         result => {
           this.creds = this.validate(result)
+          this.global.setUsername(this.username)
+          this.global.setPassword(this.password)
         },
         error => console.log(error)
       );

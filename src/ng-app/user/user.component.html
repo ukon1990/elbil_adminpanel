@@ -1,4 +1,12 @@
 <h2>{{title}}</h2>
+<form *ngIf="showNewPasswordForm">
+  Skriv inn det nye passordet for {{username}}:<br>
+  <label for="password">Nytt passord</label>
+  <input name="password" type="password" [(ngModel)]="password"/><br>
+  <label for="passwordMatch">Gjenta passordet</label>
+  <input name="passwordMatch" type="password" [(ngModel)]="passwordMatch"/><br>
+  <input type="submit" (click)="newPassword()" value="Bytt passord"/>
+</form>
 <table>
   <tr>
     <th>Brukernavn</th>
@@ -10,7 +18,7 @@
     <td><input type="email" value="{{user.mail}}"> </td>
     <td>
       <button (click)="deleteUser(user.user_id)">Slett</button>
-      <button>Nytt passord</button>
+      <button (click)="newPasswordForm(user.username)">Nytt passord</button>
     </td>
   </tr>
 </table>

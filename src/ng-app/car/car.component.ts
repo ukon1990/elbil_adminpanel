@@ -3,6 +3,7 @@ import {NgClass} from '@angular/common';
 import {Router} from '@angular/router';
 import {Car} from './car';
 import {CarService} from './car.service';
+import {Global} from '../global';
 
 @Component({
   moduleId: module.id,
@@ -68,7 +69,9 @@ export class CarComponent {
     '52' : 'Type 2 + Danish (Section 107-2-D1)'
   };
 
-  constructor(private router: Router, private carService: CarService){}
+  constructor(
+    private router: Router, private carService: CarService,
+    private global: Global){}
 
   ngOnInit(): void{
 

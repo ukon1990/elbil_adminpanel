@@ -61,7 +61,7 @@ nav ul li:hover{
   -moz-box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.21);
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.21);
 }
-button, input[type=button]{
+button, input[type=button], input[type=submit]{
   background: #B5ABAA;
   border: none;
 
@@ -72,7 +72,7 @@ button, input[type=button]{
   box-shadow: none;
   transition: box-shadow 1s;
 }
-button:hover, input[type=button]:hover{
+button:hover, input[type=button]:hover, input[type=submit]:hover{
   -webkit-box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.21);
   -webkit-transition: box-shadow 1s;
   -moz-box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.21);
