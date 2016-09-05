@@ -18,7 +18,7 @@
   transition: box-shadow 1s, top 1s;
 }
 #dialog-car.hide{
-  top: -5em;
+  top: -10em;
   display:block;
   -webkit-box-shadow: none;
   -webkit-transition: box-shadow 1s, top 1s;

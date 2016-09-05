@@ -1,21 +1,26 @@
 <h2>{{title}}</h2>
-<form *ngIf="showNewPasswordForm">
-  Skriv inn det nye passordet for {{username}}:<br>
-  <label for="password">Nytt passord</label>
-  <input name="password" type="password" [(ngModel)]="password"/><br>
-  <label for="passwordMatch">Gjenta passordet</label>
-  <input name="passwordMatch" type="password" [(ngModel)]="passwordMatch"/><br>
-  <input type="submit" (click)="newPassword()" value="Bytt passord"/>
-</form>
+<div id="dialog-password" [ngClass]="{hide: !showNewPasswordForm}">
+  <div id="dialog-top"> <button (click)="newPasswordForm('')">Lukk</button></div>
+  <form>
+    Skriv inn det nye passordet for {{username}}:<br>
+    <label for="password">Nytt passord</label>
+    <input name="password" type="password" [(ngModel)]="password"/><br>
+    <label for="passwordMatch">Gjenta passordet</label>
+    <input name="passwordMatch" type="password" [(ngModel)]="passwordMatch"/><br>
+    <input type="submit" (click)="newPassword()" value="Bytt passord"/>
+  </form>
+</div>
 <table>
   <tr>
     <th>Brukernavn</th>
+    <th>Admin</th>
     <th>Mail</th>
     <th>Handling</th>
   </tr>
   <tr *ngFor="let user of users.data">
     <td>{{user.username}}</td>
-    <td><input type="email" value="{{user.mail}}"> </td>
+    <td>{{user.admin === 1 ? 'Ja': 'Nei'}}</td>
+    <td><input type="email" value="{{user.mail}}" readonly> </td>
     <td>
       <button (click)="deleteUser(user.user_id)">Slett</button>
       <button (click)="newPasswordForm(user.username)">Nytt passord</button>

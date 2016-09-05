@@ -11,7 +11,7 @@ import {Global} from '../global';
   templateUrl: 'car.component.html',
   styleUrls: ['car.component.css'],
   directives: [NgClass],
-  providers: [CarService]
+  providers: [CarService, Global]
 })
 export class CarComponent {
   title = 'Bilpanel';
