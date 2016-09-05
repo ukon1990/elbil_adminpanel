@@ -12,7 +12,7 @@ export class LoginService{
 
   login(username: string, password: string){
     return this.http.get(
-      'http://localhost:8888/elCharge_web/api/admin/AdminLogin.php?username='
+      'https://elbil.hiof.no/api/admin/AdminLogin.php?username='
       + username + '&password=' + password
     ).map(response => <Login>function(r){
       //Checking if there is a valid
@@ -22,7 +22,7 @@ export class LoginService{
   }
   logout(){
     return this.http.get(
-      'http://localhost:8888/elCharge_web/api/logout.php'
+      'https://elbil.hiof.no/api/logout.php'
     ).map(response => <Login>function(r){
       console.log(r);
       return r;

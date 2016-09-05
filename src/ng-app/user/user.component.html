@@ -19,7 +19,7 @@
   </tr>
   <tr *ngFor="let user of users.data">
     <td>{{user.username}}</td>
-    <td>{{user.admin === 1 ? 'Ja': 'Nei'}}</td>
+    <td>{{userIsAdmin(user.admin)}}</td>
     <td><input type="email" value="{{user.mail}}" readonly> </td>
     <td>
       <button (click)="deleteUser(user.user_id)">Slett</button>

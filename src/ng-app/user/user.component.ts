@@ -53,7 +53,7 @@ export class UserComponent {
     }
   }
   deleteUser(userId: string, index: number): void{
-    this.userService.deleteUser(userId)
+    this.userService.deleteUser(userId, this.global.getUsername(), this.global.getPassword())
       .subscribe(
         users => {
           this.users = users
@@ -72,5 +72,8 @@ export class UserComponent {
         },
         error => console.log(error)
       );
+  }
+  userIsAdmin(isAdmin: string): string{
+    return isAdmin === '1' ? 'Ja': 'Nei';
   }
 }
