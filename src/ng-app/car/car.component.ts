@@ -24,29 +24,8 @@ export class CarComponent {
   carDialogName: string = '';
   carDialog: boolean = false;
   //Lists
-  cars = [
-    { "model":"Nissan Leaf", "conns":["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
-    { "model":"BMW i3", "conns": ["14", "50", "32", "60", "42", "52", "39", "41"] },
-    { "model":"Buddy", "conns": ["14", "50"] },
-    { "model":"Citroën Berlingo", "conns": ["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
-    { "model":"Citroën C-ZERO", "conns":["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
-    { "model":"Ford Focus Electric", "conns":["14", "50", "31", "60", "32", "42", "52"] },
-    { "model":"Kia Soul Electric", "conns":["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
-    { "model":"Mercedes B-klasse ED", "conns":["14", "50", "32", "60", "42", "52"] },
-    { "model":"Mitsubishi i-MIEV", "conns":["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
-    { "model":"Nissan e-NV200/Evalia", "conns":["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
-    { "model":"Peugeot iOn", "conns":["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
-    { "model":"Peugeot Partner", "conns":["14", "50", "31", "60", "32", "42", "52", "30", "41", "43"] },
-    { "model":"Renault Kangoo ZE", "conns":["14", "50", "31", "60", "32", "42", "52"] },
-    { "model":"Renault Twizy", "conns":["14", "50"] },
-    { "model":"Renault Zoe", "conns":["14", "50", "32", "60", "42", "52"] },
-    { "model":"Reva", "conns":["14", "50"] },
-    { "model":"Tesla Model S", "conns":["14", "50", "32", "60", "42", "52", "34", "36", "40"] },
-    { "model":"Tesla Roadster", "conns":["14", "50", "29"] },
-    { "model":"Think", "conns":["14", "50"] },
-    { "model":"VW e-Golf", "conns":["14", "50", "32", "60", "42", "52", "39", "41"] },
-    { "model":"VW e-up!", "conns":["14", "50", "31", "60", "32", "42", "52"] }
-  ];
+  cars_obj = {};
+  cars = [];
   connTypes = {
     '0' : 'Unspecified',
     '14' : 'Schuko',
@@ -74,7 +53,7 @@ export class CarComponent {
     private global: Global){}
 
   ngOnInit(): void{
-
+    this.getCars();
     /*
     this.users = this.userService.get()
       .subscribe(
@@ -120,6 +99,15 @@ export class CarComponent {
   addCar(): void{
     this.openDialog();
     this.cars.push({'model': this.carDialogName, 'conns': []});
+    this.cars_obj = this.carService.addCar(
+      this.global.getUsername(), this.global.getPassword(),
+      this.carDialogName)
+      .subscribe(
+        cars => {
+          this.cars = cars.data
+        },
+        error => console.log(error)
+      );
   }
   getConnKeys(){
     let list = [];
@@ -127,5 +115,14 @@ export class CarComponent {
      list.push(x);
     }
     return list;
+  }
+  getCars(): void{
+    this.cars_obj = this.carService.getCars()
+      .subscribe(
+        cars => {
+          this.cars = cars.data
+        },
+        error => console.log(error)
+      );
   }
 }
