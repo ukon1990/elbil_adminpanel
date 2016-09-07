@@ -25,6 +25,7 @@ export class CarComponent {
   carDialog: boolean = false;
   //Lists
   cars_obj = {};
+  response = {};
   cars = [];
   connTypes = {
     '0' : 'Unspecified',
@@ -54,16 +55,6 @@ export class CarComponent {
 
   ngOnInit(): void{
     this.getCars();
-    /*
-    this.users = this.userService.get()
-      .subscribe(
-        cv => {
-          this.cv = cv
-          this.skills = cv.skills
-        },
-        error => console.log(error)
-      );
-    this.router.navigate(['/about']);*/
   }
   //Checks if a car matches the search string
   contains(text: string): boolean{
@@ -74,7 +65,21 @@ export class CarComponent {
     }
   }
   save(): void{
-    console.log('saved changes');
+    let obj: string;
+    //Adding any car changes to the DB
+    for(let car in this.cars){
+      obj = JSON.stringify(this.cars[car]);
+      this.cars_obj = this.carService.updateCar(
+        this.global.getUsername(), this.global.getPassword(),
+        this.cars[car].model, obj)
+        .subscribe(
+          cars => {
+            this.cars = cars.data
+          },
+          error => console.log(error)
+        );
+      console.log(this.cars[car]);
+    }
   }
   //Function for removing connectors from a car model
   removeConnector(conn: number): void{
@@ -108,6 +113,9 @@ export class CarComponent {
         },
         error => console.log(error)
       );
+  }
+  updateCar(): void{
+    console.log('updated!');
   }
   getConnKeys(){
     let list = [];

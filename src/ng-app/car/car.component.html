@@ -28,4 +28,5 @@
       <li *ngFor="let c of selectedCar.conns, let i = index">{{connTypes[c]}} <button class="delete-btn" (click)="removeConnector(i)">Fjern</button></li>
     </ul>
   </div>
+  <button (click)="save()">Lagre endringer</button>
 </div>

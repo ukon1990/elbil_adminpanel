@@ -20,15 +20,16 @@ export class CarService{
       .map(response => <Car>function(r){ console.log(r); return r;  }(response.json()));
   }
   updateCar(username: string, password: string, model: string, json: string){
+    console.log('upd');
     return this.http.get(this.url + '/admin/AlterCars.php?username='
       + username + '&password=' + password +
     '&action=update&model=' + model + '&json=' + json)
-      .map(response => <Car>function(r){ console.log(r); return r;  }(response.json()));
+      .map(response => <Car>function(r){ console.log(r); return r;  }(response));
   }
   addCar(username: string, password: string, model: string){
     return this.http.get(this.url + '/admin/AlterCars.php?username='
       + username + '&password=' + password +
     '&action=add&model=' + model)
-      .map(response => <Car>function(r){ console.log(r); return r;  }(response.json()));
+      .map(response => <Car>function(r){ console.log(r); return r;  }(response));
   }
 }
